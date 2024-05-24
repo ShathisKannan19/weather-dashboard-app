@@ -7,6 +7,8 @@ import axios from "axios";
 import DailyForcast from "./DailyForcast";
 import CommonLoader from "./CommonLoader";
 
+//Icon for Error
+import { GiThink } from "react-icons/gi";
 
 const Dashboard = () => {
   const [input, setInput] = useState("");
@@ -16,7 +18,12 @@ const Dashboard = () => {
     error: false,
   });
 
-  const search = (async (city) => {
+  useEffect(() => {
+    search("Swamimalai");
+    console.log("Application of Dashboard Started...");
+  }, []);
+
+  const search = async (city) => {
     const query = city || input;
     if (query) {
       setWeather({ ...weather, loading: true });
@@ -39,12 +46,7 @@ const Dashboard = () => {
         //   console.log("error", error);
         });
     }
-  },[input, weather]);
-
-  useEffect(() => {
-    search("Swamimalai");
-    console.log("Application of Dashboard Started...");
-  }, [search]);
+  };
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
