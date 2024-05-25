@@ -7,9 +7,6 @@ import axios from "axios";
 import DailyForcast from "./DailyForcast";
 import CommonLoader from "./CommonLoader";
 
-//Icon for Error
-import { GiThink } from "react-icons/gi";
-
 const Dashboard = () => {
   const [input, setInput] = useState("");
   const [weather, setWeather] = useState({
@@ -18,10 +15,37 @@ const Dashboard = () => {
     error: false,
   });
 
-  useEffect(() => {
-    search("Swamimalai");
-    console.log("Application of Dashboard Started...");
-  }, []);
+  const handleStateChange = (event) => {
+    setSelectedState(event.target.value);
+    setSelectedDistrict(""); // Reset district selection when state changes
+  };
+
+  const handleDistrictChange = (event) => {
+    setSelectedDistrict(event.target.value);
+    search(event.target.value);
+  };
+
+  const [selectedState, setSelectedState] = useState("");
+  const [selectedDistrict, setSelectedDistrict] = useState("");
+
+  const statesAndDistricts = {
+        TamilNadu: [
+      "Ariyalur", "Chengalpattu", "Chennai", "Coimbatore", "Cuddalore",
+      "Dharmapuri", "Dindigul", "Erode", "Kallakurichi", "Kanchipuram",
+      "Kanyakumari", "Karur", "Krishnagiri", "Madurai", "Mayiladuthurai",
+      "Nagapattinam", "Namakkal", "Nilgiris", "Perambalur", "Pudukkottai",
+      "Ramanathapuram", "Ranipet", "Salem", "Sivagangai", "Tenkasi",
+      "Thanjavur", "Theni", "Thiruvallur", "Thiruvarur", "Thoothukudi",
+      "Tiruchirappalli", "Tirunelveli", "Tirupattur", "Tiruppur",
+      "Tiruvannamalai", "Vellore", "Villupuram", "Virudhunagar"
+    ],
+    Karnataka: [
+      "Bangalore", "Mysore", "Mangalore", "Hubli", "Gulbarga"
+    ],
+
+    // Add more states and districts here
+  };
+
 
   const search = async (city) => {
     const query = city || input;
@@ -48,11 +72,18 @@ const Dashboard = () => {
     }
   };
 
+  useEffect(() => {
+    search("Swamimalai");
+    // console.log("Application of Dashboard Started...");
+  }, []);
+
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
       search();
       setInput("");
+      setSelectedDistrict("");
+      setSelectedState("");
     }
   };
 
@@ -103,6 +134,72 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+        
+        <div className="grid sm:grid-cols-2 gap-7">
+          <div className="flex w-full items-center bg-white rounded-md overflow-hidden shadow-lg">
+            <span className="px-4 py-2 bg-gray-200">
+              <svg
+                className="w-6 h-6 text-gray-500"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </span>
+            <select
+              className="p-2 w-full border-0 h-full outline-none"
+              value={selectedState}
+              onChange={handleStateChange}
+            >
+              <option value="">Select State</option>
+              {Object.keys(statesAndDistricts).map((state) => (
+                <option key={state} value={state}>
+                  {state}
+                </option>
+              ))}
+            </select>
+          </div>
+          {selectedState && (
+            <div className="flex w-full items-center bg-white rounded-md overflow-hidden shadow-lg">
+              <span className="px-4 py-2 bg-gray-200">
+                <svg
+                  className="w-6 h-6 text-gray-500"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </span>
+              <select
+                className="p-2 w-full border-0 h-full outline-none"
+                value={selectedDistrict}
+                onChange={handleDistrictChange}
+              >
+                <option value="">Select District</option>
+                {statesAndDistricts[selectedState].map((district) => (
+                  <option key={district} value={district}>
+                    {district}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+        </div>
+
         <div className="h-full">
           
           <div className="h-full text-center bg-white/15 sm:col-span-2 backdrop-blur-md rounded-lg border-white/25 border-2">

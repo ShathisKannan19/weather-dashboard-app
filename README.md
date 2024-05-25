@@ -1,70 +1,102 @@
-# Getting Started with Create React App
+# Weather Forcast Dashboard built with React and Open Weather API 2.5
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a weather forecast application built with React.js, leveraging the OpenWeather API 2.5 to provide current and forecasted weather data.
 
-## Available Scripts
+## The Application
 
-In the project directory, you can run:
+![Weather Forecast App Screenshot](public/ApplicationImage.png)
 
-### `npm start`
+## Demo
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Check out the live demo of the application: [Weather Forecast App Demo](https://shanofre-weather-app.netlify.app/)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Project Structure
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```plaintext
+weather-forecast-app/
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── dashboard/
+│   │   │   ├── Dashboard.jsx
+│   │   │   ├── DailyForecast.jsx
+│   │   │   ├── CommonLoader.jsx
+│   │   │   ├── utility/
+│   │   │   │   ├── DateConverter.js
+│   ├── App.js
+│   ├── index.js
+│   ├── ...
+├── .env
+├── package.json
+├── README.md
+```
 
-### `npm run build`
+## Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To get started with this project, follow these steps:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Clone the repository:**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    ```bash
+    git clone https://github.com/ShathisKannan19/weather-dashboard-app.git
+    cd weather-dashboard-app
+    ```
 
-### `npm run eject`
+2. **Install dependencies:**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    Ensure you have [Node.js](https://nodejs.org/) installed. Then run:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    ```bash
+    npm install
+    ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. **Set up OpenWeather API key:**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    Create a `.env` file in the root directory and add your OpenWeather API key:
 
-## Learn More
+    ```env
+    REACT_APP_API_KEY=your_openweather_api_key
+    ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. **Run the application:**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    ```bash
+    npm start
+    ```
 
-### Code Splitting
+    This will start the development server, and you can view the application at `http://localhost:3000`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Project Components
 
-### Analyzing the Bundle Size
+### Dashboard
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+The `Dashboard` component is the main container for the weather forecast information. It fetches data from the OpenWeather API and displays it.
 
-### Making a Progressive Web App
+- **File:** `Dashboard.jsx`
+- **Path:** `src/components/dashboard/Dashboard.jsx`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Daily Forecast
 
-### Advanced Configuration
+The `DailyForecast` component displays the daily weather forecast.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **File:** `DailyForecast.jsx`
+- **Path:** `src/components/dashboard/DailyForecast.jsx`
 
-### Deployment
+### Common Loader
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+The `CommonLoader` component shows a loading spinner while data is being fetched.
 
-### `npm run build` fails to minify
+- **File:** `CommonLoader.jsx`
+- **Path:** `src/components/dashboard/CommonLoader.jsx`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Utility - Date Converter
+
+The `DateConverter` utility provides functions to format and convert date strings.
+
+- **File:** `DateConverter.js`
+- **Path:** `src/components/dashboard/utility/DateConverter.js`
+
+## Additional Notes
+
+- Ensure you network while you using this Application because we are working with API of OpenWeather API 2.5
