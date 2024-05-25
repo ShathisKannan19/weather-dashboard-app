@@ -111,7 +111,7 @@ const Dashboard = () => {
             <input
               type="text"
               className="p-2 w-full border-0 h-full outline-none"
-              placeholder="Enter City Name.."
+              placeholder="Enter by City Name.."
               name="query"
               value={input}
               onChange={(event) => setInput(event.target.value)}
@@ -129,7 +129,7 @@ const Dashboard = () => {
                 alt="Avatar of CHS Weather App"
                 className="rounded-full shadow-xl"
                 width={"40px"}
-                title="Shathis Kannan "
+                title="Shathis Kannan"
               />
             </div>
           </div>
@@ -158,7 +158,7 @@ const Dashboard = () => {
               value={selectedState}
               onChange={handleStateChange}
             >
-              <option value="">Select State</option>
+              <option value="">Search by State</option>
               {Object.keys(statesAndDistricts).map((state) => (
                 <option key={state} value={state}>
                   {state}
@@ -189,7 +189,7 @@ const Dashboard = () => {
                 value={selectedDistrict}
                 onChange={handleDistrictChange}
               >
-                <option value="">Select District</option>
+                <option value="">Search by District</option>
                 {statesAndDistricts[selectedState].map((district) => (
                   <option key={district} value={district}>
                     {district}
